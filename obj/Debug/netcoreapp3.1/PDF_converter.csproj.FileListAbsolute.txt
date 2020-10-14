@@ -1,0 +1,15 @@
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\bin\Debug\netcoreapp3.1\PDF_converter.exe
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\bin\Debug\netcoreapp3.1\PDF_converter.deps.json
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\bin\Debug\netcoreapp3.1\PDF_converter.runtimeconfig.json
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\bin\Debug\netcoreapp3.1\PDF_converter.runtimeconfig.dev.json
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\bin\Debug\netcoreapp3.1\PDF_converter.dll
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\bin\Debug\netcoreapp3.1\PDF_converter.pdb
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\obj\Debug\netcoreapp3.1\PDF_converter.csprojAssemblyReference.cache
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\obj\Debug\netcoreapp3.1\PDF_converter.csproj.GenerateResource.cache
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\obj\Debug\netcoreapp3.1\PDF_converter.AssemblyInfoInputs.cache
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\obj\Debug\netcoreapp3.1\PDF_converter.AssemblyInfo.cs
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\obj\Debug\netcoreapp3.1\PDF_converter.csproj.CoreCompileInputs.cache
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\obj\Debug\netcoreapp3.1\PDF_converter.dll
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\obj\Debug\netcoreapp3.1\PDF_converter.pdb
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\obj\Debug\netcoreapp3.1\PDF_converter.genruntimeconfig.cache
+C:\Users\Kev_Kev\Documents\personal_projects\PDF_converter\PDF_converter\obj\Debug\netcoreapp3.1\PDF_converter.SelectForm.resources
