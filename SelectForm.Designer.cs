@@ -76,7 +76,6 @@
             this.SizeTB.Size = new System.Drawing.Size(40, 23);
             this.SizeTB.TabIndex = 3;
             this.SizeTB.TextChanged += new System.EventHandler(this.SizeTB_TextChanged);
-            this.SizeTB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SizeTB_KeyDown);
             // 
             // label1
             // 

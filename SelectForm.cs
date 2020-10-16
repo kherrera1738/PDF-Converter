@@ -20,8 +20,6 @@ namespace PDF_converter
         {
             InitializeComponent();
             ToOps.Enabled = false;
-
-
         }
 
         // Event Handlers
@@ -29,68 +27,13 @@ namespace PDF_converter
         private void ToOps_Click(object sender, EventArgs e)
         {
             // Create new Panel
-
-            this.Height += 100;
-            
-            Panel opsPanel = new Panel
-            {
-                Location = new Point(26, 12),
-                Name = "opsPanel",
-                Size = new Size(selectPanel.Size.Width, this.Height-30)
-            };
-
-            this.opsPanel = opsPanel;
-
-            // Create Controls for new panel
-            ListBox filesFoundList = new ListBox
-            {
-                Location = new Point(10, 50),
-                Size = new Size(100, 200)
-            };
-
-            Label FilesFoundLbl = new Label
-            {
-                Location = new Point(25, 30),
-                Text = "Files Found"
-            };
-
-            ListBox filesToIgnoreList = new ListBox
-            {
-                Location = new Point(325, 50),
-                Size = new Size(100, 200)
-            };
-
-            Label FilesToIgnoreLbl = new Label
-            {
-                Location = new Point(335, 30),
-                Text = "Files to Ignore"
-            };
-
-            Button FoundToIgnoreBtn = new Button
-            {
-                Location = new Point(185, 150),
-                Text = char.ConvertFromUtf32(0x2192)
-            };
-
-            Button IgnoreToFoundBTn = new Button
-            {
-                Location = new Point(185, 100),
-                Text = char.ConvertFromUtf32(0x2190)
-            };
-
-            System.Diagnostics.Debug.WriteLine("Created Panel");
-
-            // Add controls to new Panel
-            opsPanel.Controls.Add(filesFoundList);
-            opsPanel.Controls.Add(FilesFoundLbl);
-            opsPanel.Controls.Add(filesToIgnoreList);
-            opsPanel.Controls.Add(FilesToIgnoreLbl);
-            opsPanel.Controls.Add(FoundToIgnoreBtn);
-            opsPanel.Controls.Add(IgnoreToFoundBTn);
+            opsPanel = CreateOpsPanel();
             this.Controls.Add(opsPanel);
 
             // Add files found to new list box
             List<string> files = GetFiles(LocationTB.Text);
+            Control[] controls = opsPanel.Controls.Find("filesFoundList", false);
+            ListBox filesFoundList = (ListBox) controls[0];
 
             filesFoundList.BeginUpdate();
 
@@ -124,11 +67,6 @@ namespace PDF_converter
             ToOps.Enabled = BrowseFormValidation();
         }
 
-        private void SizeTB_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void LocationTB_TextChanged(object sender, EventArgs e)
         {
             ToOps.Enabled = BrowseFormValidation();
@@ -137,7 +75,48 @@ namespace PDF_converter
         // Moves file name from convert list to ignore list
         private void FoundToIgnoreBtn_Click(object sender, EventArgs e)
         {
-            
+            // Get foundList and item to more to ignore list
+            Control[] controls = opsPanel.Controls.Find("filesFoundList", false);
+            ListBox filesFoundList = (ListBox) controls[0];
+            Object selected = filesFoundList.SelectedItem;
+
+            if (selected != null)
+            {
+                // Get ignoreList to add selected item
+                controls = opsPanel.Controls.Find("filesToIgnoreList", false);
+                ListBox filesToIgnoreList = (ListBox)controls[0];
+
+                filesToIgnoreList.BeginUpdate();
+                filesToIgnoreList.Items.Add(selected);
+                filesToIgnoreList.EndUpdate();
+
+                filesFoundList.BeginUpdate();
+                filesFoundList.Items.Remove(selected);
+                filesFoundList.EndUpdate();
+            }
+        }
+
+        private void IgnoreToFoundBtn_Click(object sender, EventArgs e) 
+        {
+            // Get foundList and item to more to ignore list
+            Control[] controls = opsPanel.Controls.Find("filesToIgnoreList", false);
+            ListBox filesToIgnoreList = (ListBox)controls[0];
+            Object selected = filesToIgnoreList.SelectedItem;
+
+            if (selected != null) 
+            {
+                // Get ignoreList to add selected item
+                controls = opsPanel.Controls.Find("filesFoundList", false);
+                ListBox filesFoundList = (ListBox)controls[0];
+
+                filesFoundList.BeginUpdate();
+                filesFoundList.Items.Add(selected.ToString());
+                filesFoundList.EndUpdate();
+
+                filesToIgnoreList.BeginUpdate();
+                filesToIgnoreList.Items.Remove(selected.ToString());
+                filesToIgnoreList.EndUpdate();
+            }
         }
 
         // Validation Functions
@@ -177,6 +156,77 @@ namespace PDF_converter
             }
 
             return files;
+        }
+
+        private Panel CreateOpsPanel()
+        {
+            this.Height += 100;
+
+            Panel opsPanel = new Panel
+            {
+                Location = new Point(26, 12),
+                Name = "opsPanel",
+                Size = new Size(selectPanel.Size.Width, this.Height - 30)
+            };
+
+            // Create Controls for new panel
+            ListBox filesFoundList = new ListBox
+            {
+                Location = new Point(10, 50),
+                Size = new Size(100, 200),
+                Name = "filesFoundList"
+            };
+
+            Label FilesFoundLbl = new Label
+            {
+                Location = new Point(25, 30),
+                Name = "FilesFoundLbl",
+                Text = "Files Found"
+            };
+
+            ListBox filesToIgnoreList = new ListBox
+            {
+                Location = new Point(325, 50),
+                Size = new Size(100, 200),
+                Name = "filesToIgnoreList"
+            };
+
+            Label FilesToIgnoreLbl = new Label
+            {
+                Location = new Point(335, 30),
+                Name = "FilesToIgnoreLbl",
+                Text = "Files to Ignore"
+            };
+
+            Button FoundToIgnoreBtn = new Button
+            {
+                Location = new Point(185, 150),
+                Name = "FoundToIgnoreBtn",
+                Text = char.ConvertFromUtf32(0x2192)
+            };
+
+            FoundToIgnoreBtn.Click += new System.EventHandler(FoundToIgnoreBtn_Click);
+
+            Button IgnoreToFoundBTn = new Button
+            {
+                Location = new Point(185, 100),
+                Name = "IgnoreToFoundBtn",
+                Text = char.ConvertFromUtf32(0x2190)
+            };
+
+            IgnoreToFoundBTn.Click += new System.EventHandler(IgnoreToFoundBtn_Click);
+
+            System.Diagnostics.Debug.WriteLine("Created Panel");
+
+            // Add controls to new Panel
+            opsPanel.Controls.Add(filesFoundList);
+            opsPanel.Controls.Add(FilesFoundLbl);
+            opsPanel.Controls.Add(filesToIgnoreList);
+            opsPanel.Controls.Add(FilesToIgnoreLbl);
+            opsPanel.Controls.Add(FoundToIgnoreBtn);
+            opsPanel.Controls.Add(IgnoreToFoundBTn);
+
+            return opsPanel;
         }
     }
 }
